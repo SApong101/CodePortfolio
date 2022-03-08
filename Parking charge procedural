@@ -1,0 +1,237 @@
+import java.util.Locale;
+import java.util.Scanner;
+
+
+public class ParkingCharge
+{
+    public static void main(String [] args){
+        Charge();
+        System.exit(0);
+    }
+    //the main method to calculate the charge of the stay
+    public static void Charge() {
+        String YesNo;
+        int Hours = 0;
+
+
+        YesNo = Disabled();
+
+
+        if (YesNo.equals("yes")) {
+            System.out.println("You get parking free");
+            System.exit(0);
+        }
+        else if (YesNo.equals("no"))
+        {
+
+            System.out.println("You must pay, please enter the number of hours you wish to stay from 1 to 8 whole hours");
+
+            HoursCalc();
+
+
+        }
+
+        else if (!YesNo.equals("yes") && (!YesNo.equals("no"))) {
+            System.out.println("Invalid input please try again");
+            System.exit(0);
+        }
+    }
+
+
+
+
+
+
+    //allows the user to input how many hours they wish to stay
+    public static int InputHours()
+    {
+        Scanner scanner = new Scanner(System.in);
+        int hours;
+        System.out.println("How many hours did you park for 1 - 8?");
+        hours = Integer.parseInt(scanner.nextLine());
+
+        return hours;
+
+    }
+    public static void HoursCalc(){
+        String local = "";
+        String Pensioner ="";
+        double CurrentCharge = 0;
+        double FinalCharge = 0;
+        int Hours;
+        Hours = InputHours();
+        if (Hours == 0) {
+            System.out.println("You have entered to stay " + Hours + " Hour(s)");
+            System.out.println("Come back later");
+            System.exit(0);
+        } else if (Hours == 1) {
+            CurrentCharge = 3;
+            System.out.println("You have entered to stay " + Hours + " Hour(s)");
+            System.out.println("Your current charge is £" + CurrentCharge);
+            System.out.println("Do you have an “I live locally” badge enter Yes or No");
+            local = Local();
+            if (!local.equals("yes") ||!local.equals("no")){
+                System.out.println("invalid input please try again");
+                Charge();
+            }
+            else if (local.equals("yes")) {
+                FinalCharge = CurrentCharge - 1;
+                System.out.println("Your new Charge is £" + FinalCharge);
+
+            } else if (local.equals("no")) {
+                FinalCharge = CurrentCharge;
+                System.out.println("Your new Charge is £" + FinalCharge);
+            }
+            else if (!local.equals("yes") && !local.equals("no")){
+                System.out.println("Invalid input please start again");
+                Charge();}
+
+            System.out.println("Are you an OAP");
+            Pensioner = OldAge();
+            if (Pensioner.equals("Yes") || Pensioner.equals("YES") || Pensioner.equals("yes")) {
+                FinalCharge = FinalCharge - 2;
+                System.out.println("Your new Charge is £" + FinalCharge);
+            } else if (Pensioner.equals("No") || Pensioner.equals("no") || Pensioner.equals("NO")) {
+                FinalCharge = FinalCharge;
+                System.out.println("Your new Charge is £" + FinalCharge);
+            }
+            else if (!Pensioner.equals("yes") && !Pensioner.equals("no")){
+                System.out.println("Invalid input please start again");
+                Charge();}
+        }
+        else if (Hours == 2 || Hours == 3 || Hours == 4) {
+            CurrentCharge = 4;
+            System.out.println("You have entered to stay " + Hours + " Hour(s)");
+            System.out.println("Your current charge is £" + CurrentCharge);
+            System.out.println("Do you have an “I live locally” badge enter Yes or No");
+            local = Local();
+            if (local.equals("Yes") || local.equals("yes") || local.equals("YES")) {
+                FinalCharge = CurrentCharge - 1;
+                System.out.println("Your new Charge is £" + FinalCharge);
+
+            } else if (local.equals("No") || local.equals("NO") || local.equals("no")) {
+                FinalCharge = CurrentCharge;
+                System.out.println("Your new Charge is £" + FinalCharge);
+            }
+            else if (!local.equals("yes") && !local.equals("no")){
+                System.out.println("Invalid input please start again");
+                Charge();}
+            System.out.println("Are you an OAP");
+            Pensioner = OldAge();
+            if (Pensioner.equals("Yes") || Pensioner.equals("YES") || Pensioner.equals("yes")) {
+                FinalCharge = FinalCharge - 2;
+                System.out.println("Your new Charge is £" + FinalCharge);
+            } else if (Pensioner.equals("No") || Pensioner.equals("no") || Pensioner.equals("NO")) {
+                FinalCharge = FinalCharge;
+                System.out.println("Your new Charge is £" + FinalCharge);
+            }
+            else if (!Pensioner.equals("yes") && !Pensioner.equals("no")){
+                System.out.println("Invalid input please start again");
+                Charge();}
+        } else if (Hours == 5 || Hours == 6) {
+            CurrentCharge = 4.5;
+            System.out.println("You have entered to stay " + Hours + " Hour(s)");
+            System.out.println("Your current charge is £" + CurrentCharge);
+            System.out.println("Do you have an “I live locally” badge enter Yes or No");
+            local = Local();
+            if (local.equals("yes")) {
+                FinalCharge = CurrentCharge - 1;
+                System.out.println("Your new Charge is £" + FinalCharge);
+
+            } else if (local.equals("no")) {
+                FinalCharge = CurrentCharge;
+                System.out.println("Your new Charge is £" + FinalCharge);
+            }
+            else if (!local.equals("yes") && !local.equals("no")){
+                System.out.println("Invalid input please start again");
+                Charge();}
+            System.out.println("Are you an OAP");
+            Pensioner = OldAge();
+            if (Pensioner.equals("yes")) {
+                FinalCharge = FinalCharge - 2;
+                System.out.println("Your new Charge is £" + FinalCharge);
+            } else if (Pensioner.equals("no")) {
+                FinalCharge = FinalCharge;
+                System.out.println("Your new Charge is £" + FinalCharge);
+            }
+            else if (!Pensioner.equals("yes") && !Pensioner.equals("no")){
+                System.out.println("Invalid input please start again");
+                Charge();}
+
+
+        }
+        else if (Hours == 7 || Hours == 8)
+        {
+            CurrentCharge = 5.5;
+            System.out.println("You have entered to stay " + Hours + " Hour(s)");
+            System.out.println("Your current charge is £" + CurrentCharge);
+            System.out.println("Do you have an “I live locally” badge enter Yes or No");
+            local = Local();
+            if (local.equals("yes")) {
+                FinalCharge = CurrentCharge - 1;
+                System.out.println("Your new Charge is £" + FinalCharge);
+
+            } else if (local.equals("no")) {
+                FinalCharge = CurrentCharge;
+                System.out.println("Your new Charge is £" + FinalCharge);
+            }
+            else if (!local.equals("yes") && !local.equals("no")){
+                System.out.println("Invalid input please start again");
+                Charge();}
+            System.out.println("Are you an OAP");
+            Pensioner = OldAge();
+            if (Pensioner.equals("yes")) {
+                FinalCharge = FinalCharge - 2;
+                System.out.println("Your new Charge is £" + FinalCharge);
+            } else if (Pensioner.equals("no")) {
+                FinalCharge = FinalCharge;
+                System.out.println("Your new Charge is £" + FinalCharge);
+
+            }
+            else if (!Pensioner.equals("yes") && !Pensioner.equals("no")){
+                System.out.println("Invalid input please start again");
+                Charge();
+
+            }
+
+        }
+        else {
+            System.out.println("Invalid input, input must be between 1 - 8 hours, please try again");
+            Charge();
+        }
+    }
+    //Allows the user to enter whether they are disabled or not
+    public static String Disabled()
+    {
+        Scanner scanner = new Scanner(System.in);
+        String Disability;
+        System.out.println("Are you disabled? Yes or No");
+        Disability = scanner.nextLine().toLowerCase();
+
+        return Disability;
+
+    }
+    //allows the user to input whether they have an “I live locally" badge or not
+    public static String Local()
+    {
+        Scanner scanner = new Scanner(System.in);
+        String Local;
+
+        Local = scanner.nextLine().toLowerCase();
+
+        return Local;
+
+    }
+    //allows the user to input whether they are old age pensioner or not
+    public static String OldAge()
+    {
+        Scanner scanner = new Scanner(System.in);
+        String OldAge;
+        System.out.println("Are you an Old Age Pensioner? Yes or No");
+        OldAge = scanner.nextLine().toLowerCase();
+
+        return OldAge;
+    }
+
+
+}
